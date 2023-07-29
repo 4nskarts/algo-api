@@ -29,7 +29,7 @@ class XCreate(XBase):
 
 class X(XCreate):
     id: int
-    exos: list[str] = []
+    exos: list = []
 
     class Config:
         orm_mode = True
@@ -65,13 +65,13 @@ class TestCaseCreate(BaseModel):
 class ExoUpdateRequest(BaseModel):
     exo_id: int
     start_code: str
-    test_cases: list[TestCaseCreate]
+    test_cases: list
 
 
 class ExoUpdateResponse(BaseModel):
     exo_id: int
     start_code: str
-    test_cases: list[TestCaseCreate]
+    test_cases: list
 
 
 class TokenData(BaseModel):
