@@ -46,7 +46,7 @@ async def read_users_me(current_user: schemas.User = Depends(dependencies.get_cu
     return current_user
 
 
-@router.get("/all", response_model=list[schemas.User])
+@router.get("/all")
 async def read_users(token: str = Depends(dependencies.oauth2_scheme), skip: int = 0, limit: int = 100, db: Session = Depends(dependencies.get_db)):
     users = crud.get_users(db, skip=skip, limit=limit)
     return users
