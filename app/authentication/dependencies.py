@@ -64,15 +64,9 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         if not username:
             raise credentials_exception
         token_data = TokenData(username=username)
+        user = get_user(db, username=token_data.username)
 
     except jwt.ExpiredSignatureError:
-        raise credentials_exception
-    except (jwt.JWTError, jwt.ExpiredSignatureError):
-        raise credentials_exception
-
-    user = get_user(db, username=token_data.username)
-
-    if not user:
         raise credentials_exception
     return user
 
