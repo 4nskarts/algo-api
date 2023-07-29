@@ -8,7 +8,7 @@ __pycache__/
 ./code*
 ./singlyUtil*
 
-./app/.env
+
 
 ./venv/
 
@@ -129,7 +129,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+
 .venv
 env/
 venv/
