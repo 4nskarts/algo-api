@@ -44,17 +44,3 @@ async def create_user(user: schemas.UserCreate, db: Session = Depends(dependenci
 @router.post("/me", response_model=schemas.User)
 async def read_users_me(current_user: schemas.User = Depends(dependencies.get_current_user)):
     return current_user
-
-
-@router.get("/all")
-async def read_users(token: str = Depends(dependencies.oauth2_scheme), skip: int = 0, limit: int = 100, db: Session = Depends(dependencies.get_db)):
-    users = crud.get_users(db, skip=skip, limit=limit)
-    return users
-
-
-@router.get("/{user_id}", response_model=schemas.User)
-async def read_user(user_id: int, token: str = Depends(dependencies.oauth2_scheme), db: Session = Depends(dependencies.get_db)):
-    db_user = crud.get_user(db, user_id=user_id)
-    if db_user is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    return db_user
